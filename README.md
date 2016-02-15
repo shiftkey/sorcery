@@ -16,6 +16,17 @@ a large database of formats to work with.
 This demo makes `libmagic` consumable from .NET code via P/Invoke. That's
 it.
 
+You can invoke it by specifying the relative or absolute path to
+the file:
+
+```csharp
+var maybeUtf8Encoding = Magic.Description(@".\examples\Octokit.rb.md");
+Console.WriteLine("Found: '{0}'" + maybeUtf8Encoding);
+// Found: 'UTF-8 Unicode English text, with very long lines, with CRLF line terminators'
+```
+
+## Status
+
 At this point I'm not sure how far this will go, but given I had to
 construct this from various incomplete samples and troubleshoot a bunch
 of silly P/Invoke stuff, perhaps someone else will be interested in this.
