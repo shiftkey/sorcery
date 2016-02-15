@@ -1,17 +1,17 @@
 # sorcery
 
-## a sane wrapper around libmagic for guessing the encoding of files
+#### a sane wrapper around libmagic for guessing the encoding of files
 
 This is a proof-of-concept for running `libmagic` on Windows.
 
-### What's `libmagic`?
+## What's `libmagic`?
 
 [libmagic](http://linux.die.net/man/3/libmagic) is a Unix library for
 interrogating the contents of a file or buffer to understand what the
 encoding of the file might be. It's an imperfect process, but it has
 a large database of formats to work with.
 
-### What does this do?
+## What does this do?
 
 This demo makes `libmagic` consumable from .NET code via P/Invoke. That's
 it.
