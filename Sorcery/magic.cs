@@ -61,7 +61,7 @@ namespace Mono.Unix
             if (_magic == IntPtr.Zero)
                 throw new MagicException("Unable to open the magic database");
 
-            if (magic_load(_magic, null) != 0)
+            if (magic_load(_magic, "magic") != 0)
                 throw new MagicException(this.Error);
 
         }
@@ -179,11 +179,11 @@ namespace Mono.Unix
 
         static public string Descrition(string filename)
         {
-            string desc;
             Magic m = new Magic(false);
 
             magic_setflags(m._magic, DefaultFlags);
-            desc = Marshal.PtrToStringAuto(magic_file(m._magic, filename));
+            var result = magic_file(m._magic, filename);
+            var desc = Marshal.PtrToStringAnsi(result);
 
             if (desc == null)
             {
@@ -217,25 +217,25 @@ namespace Mono.Unix
             MAGIC_ERROR = 1 << 9
         }
 
-        [DllImport("magic")]
+        [DllImport("magic.dll", CallingConvention = CallingConvention.Cdecl)]
         private extern static IntPtr magic_open(MAGIC_FLAGS flags);
 
-        [DllImport("magic")]
+        [DllImport("magic.dll", CallingConvention = CallingConvention.Cdecl)]
         private extern static void magic_close(IntPtr magic_cookie);
 
-        [DllImport("magic")]
+        [DllImport("magic.dll", CallingConvention = CallingConvention.Cdecl)]
         private extern static int magic_setflags(IntPtr magic_cookie, MAGIC_FLAGS flags);
 
-        [DllImport("magic")]
+        [DllImport("magic.dll", CallingConvention = CallingConvention.Cdecl)]
         private extern static IntPtr magic_file(IntPtr magic_cookie, string filename);
 
-        [DllImport("magic")]
+        [DllImport("magic.dll", CallingConvention = CallingConvention.Cdecl)]
         private extern static IntPtr magic_buffer(IntPtr magic_cookie, Byte[] data, int len);
 
-        [DllImport("magic")]
+        [DllImport("magic.dll", CallingConvention = CallingConvention.Cdecl)]
         private extern static IntPtr magic_error(IntPtr magic_cookie);
 
-        [DllImport("magic")]
+        [DllImport("magic.dll", CallingConvention = CallingConvention.Cdecl)]
         private extern static int magic_load(IntPtr magic_cookie, string filename);
 
     }
