@@ -177,7 +177,7 @@ namespace Mono.Unix
             return mime;
         }
 
-        static public string Descrition(string filename)
+        static public string Description(string filename)
         {
             Magic m = new Magic(false);
 
