@@ -1,5 +1,4 @@
-﻿using Mono.Unix;
-using Xunit;
+﻿using Xunit;
 
 namespace Sorcery.TestBench
 {

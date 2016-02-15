@@ -30,7 +30,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 
-namespace Mono.Unix
+namespace Sorcery
 {
 
     public class MagicException : Exception
