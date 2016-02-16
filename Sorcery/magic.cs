@@ -132,7 +132,7 @@ namespace Sorcery
         {
             get
             {
-                return Marshal.PtrToStringAuto(magic_error(_magic));
+                return Marshal.PtrToStringAnsi(magic_error(_magic));
             }
         }
 
@@ -183,6 +183,22 @@ namespace Sorcery
 
             magic_setflags(m._magic, DefaultFlags);
             var result = magic_file(m._magic, filename);
+            var desc = Marshal.PtrToStringAnsi(result);
+
+            if (desc == null)
+            {
+                throw new MagicException(m.Error);
+            }
+
+            return desc;
+        }
+
+        static public string Description(byte[] buffer)
+        {
+            Magic m = new Magic(false);
+
+            magic_setflags(m._magic, DefaultFlags);
+            var result = magic_buffer(m._magic, buffer, buffer.Length);
             var desc = Marshal.PtrToStringAnsi(result);
 
             if (desc == null)
