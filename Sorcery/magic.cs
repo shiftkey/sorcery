@@ -193,6 +193,22 @@ namespace Sorcery
             return desc;
         }
 
+        static public string Description(byte[] buffer)
+        {
+            Magic m = new Magic(false);
+
+            magic_setflags(m._magic, DefaultFlags);
+            var result = magic_buffer(m._magic, buffer, buffer.Length);
+            var desc = Marshal.PtrToStringAnsi(result);
+
+            if (desc == null)
+            {
+                throw new MagicException(m.Error);
+            }
+
+            return desc;
+        }
+
         private static MAGIC_FLAGS DefaultFlags
         {
             get
