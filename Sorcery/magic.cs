@@ -132,7 +132,7 @@ namespace Sorcery
         {
             get
             {
-                return Marshal.PtrToStringAuto(magic_error(_magic));
+                return Marshal.PtrToStringAnsi(magic_error(_magic));
             }
         }
 
